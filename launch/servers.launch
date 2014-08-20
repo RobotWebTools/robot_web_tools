@@ -1,0 +1,40 @@
+<!--
+   Author: Russell Toris, Worcester Polytechnic Institute
+  Version: August 20, 2014
+-->
+
+<launch>
+  <!-- rosbridge Params -->
+  <arg name="rosbridge_port" default="9090" />
+  <arg name="rosbridge_address" default="" />
+  <arg name="rosbridge_ssl" default="false" />
+  <arg name="rosbridge_certfile" />
+  <arg name="rosbridge_keyfile" />
+  <arg name="rosbridge_authenticate" default="false" />
+  
+  <!-- MJPEG Server Params -->
+  <arg name="mjpeg_port" default="8080" />
+  
+  <group if="$(arg rosbridge_ssl)">
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+      <arg name="port" value="$(arg rosbridge_port)" />
+      <arg name="address" value="$(arg rosbridge_address)" />
+      <arg name="ssl" value="$(arg rosbridge_ssl)" />
+      <arg name="certfile" value="$(arg rosbridge_certfile)" />
+      <arg name="keyfile" value="$(arg rosbridge_keyfile)" />
+      <arg name="authenticate" value="$(arg rosbridge_authenticate)" />
+    </include>
+  </group>
+  <group unless="$(arg rosbridge_ssl)">
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+      <arg name="port" value="$(arg rosbridge_port)" />
+      <arg name="address" value="$(arg rosbridge_address)" />
+      <arg name="ssl" value="$(arg rosbridge_ssl)" />
+      <arg name="authenticate" value="$(arg rosbridge_authenticate)" />
+    </include>
+  </group>
+  
+  <node name="mjpeg_server" pkg="mjpeg_server" type="mjpeg_server" output="screen">
+    <param name="port" value="$(arg mjpeg_port)" />
+  </node>
+</launch>

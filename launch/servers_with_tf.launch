@@ -1,0 +1,29 @@
+<!--
+   Author: Russell Toris, Worcester Polytechnic Institute
+  Version: August 20, 2014
+-->
+
+<launch>
+  <!-- rosbridge Params -->
+  <arg name="rosbridge_port" default="9090" />
+  <arg name="rosbridge_address" default="" />
+  <arg name="rosbridge_ssl" default="false" />
+  <arg name="rosbridge_certfile" default="" />
+  <arg name="rosbridge_keyfile" default="" />
+  <arg name="rosbridge_authenticate" default="false" />
+  
+  <!-- MJPEG Server Params -->
+  <arg name="mjpeg_port" default="8080" />
+  
+  <include file="$(find robot_web_tools)/launch/servers.launch">
+    <arg name="rosbridge_port" value="$(arg rosbridge_port)" />
+    <arg name="rosbridge_address" value="$(arg rosbridge_address)" />
+    <arg name="rosbridge_ssl" value="$(arg rosbridge_ssl)" />
+    <arg name="rosbridge_certfile" value="$(arg rosbridge_certfile)" />
+    <arg name="rosbridge_keyfile" value="$(arg rosbridge_keyfile)" />
+    <arg name="rosbridge_authenticate" value="$(arg rosbridge_authenticate)" />
+    <arg name="mjpeg_port" value="$(arg mjpeg_port)" />
+  </include>
+  
+  <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" output="screen" />
+</launch>

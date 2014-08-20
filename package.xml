@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <name>robot_web_tools</name>
+  <version>0.0.0</version>
+  <description>Robot Web Tools Metapackage and Top Level Launch Files</description>
+
+  <maintainer email="rctoris@wpi.edu">Russell Toris</maintainer>
+  <author email="rctoris@wpi.edu">Russell Toris</author>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/robot_web_tools</url>
+  <url type="bugtracker">https://github.com/WPI-RAIL/robot_web_tools/issues</url>
+  <url type="repository">https://github.com/WPI-RAIL/robot_web_tools</url>
+ 
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <run_depend>tf2_web_republisher</run_depend>
+  <run_depend>rosbridge_suite</run_depend>
+  <run_depend>interactive_marker_proxy</run_depend>
+  <run_depend>ros_web_video</run_depend>
+  <run_depend>depthcloud_encoder</run_depend>
+  <run_depend>mjpeg_server</run_depend>
+</package>
