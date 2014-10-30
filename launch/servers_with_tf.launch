@@ -12,8 +12,10 @@
   <arg name="rosbridge_keyfile" default="" />
   <arg name="rosbridge_authenticate" default="false" />
   
-  <!-- MJPEG Server Params -->
-  <arg name="mjpeg_port" default="8080" />
+  <!-- Video Server Params -->
+  <arg name="video_port" default="8080" />
+  <arg name="video_server_threads" default="1" />
+  <arg name="video_ros_threads" default="2" />
   
   <include file="$(find robot_web_tools)/launch/servers.launch">
     <arg name="rosbridge_port" value="$(arg rosbridge_port)" />
@@ -22,7 +24,9 @@
     <arg name="rosbridge_certfile" value="$(arg rosbridge_certfile)" />
     <arg name="rosbridge_keyfile" value="$(arg rosbridge_keyfile)" />
     <arg name="rosbridge_authenticate" value="$(arg rosbridge_authenticate)" />
-    <arg name="mjpeg_port" value="$(arg mjpeg_port)" />
+    <arg name="video_port" value="$(arg video_port)" />
+    <arg name="video_server_threads" value="$(arg video_server_threads)" />
+    <arg name="video_ros_threads" value="$(arg video_ros_threads)" />
   </include>
   
   <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" output="screen" />
